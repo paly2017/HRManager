@@ -1,0 +1,14 @@
+
+1,org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaAutoConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: No identifier specified for entity:
+com.example.demo.eneity.Move
+
+解决方案：创建的实体类没有@Entity注解， @Id 包倒错
+正确的：
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Department {
+  @Id
+  @GeneratedValue
