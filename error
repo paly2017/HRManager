@@ -12,3 +12,9 @@ import javax.persistence.Id;
 public class Department {
   @Id
   @GeneratedValue
+
+2,org.xml.sax.SAXParseException: 元素类型 "link" 必须由匹配的结束标记 "</link>" 终止。
+ 原因： <link href="/css/style.css" rel="stylesheet">
+        <link href="/css/login.css" rel="stylesheet">
+ 解决： <link href="/css/style.css" rel="stylesheet"/>
+        <link href="/css/login.css" rel="stylesheet"/>
