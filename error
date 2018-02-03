@@ -20,4 +20,8 @@ public class Department {
         <link href="/css/login.css" rel="stylesheet"/>
  3,java.lang.IllegalArgumentException: Parameter value [1001] did not match expected type [java.lang.Long (n/a)]
  原因：获取到的参数类型与实体类中类型不一致
- 
+
+ 4，thymeleaf模板的使用，在页面取session中的值
+ <html xmlns:th="http://www.thymeleaf.org">
+ <li>欢迎：<span th:text="${session.userInfo.name}">name</span>&nbsp;</li>
+ th:text 替换<span>标签的文本值

@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -153,7 +153,7 @@
                     </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
-                    <li>欢迎：admin&nbsp;</li>
+                    <li>欢迎：<span th:text="${session.userInfo.name}">name</span>&nbsp;</li>
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                             <i class="fa fa-user"></i> <!-- <span class="label label-primary">8</span> -->
