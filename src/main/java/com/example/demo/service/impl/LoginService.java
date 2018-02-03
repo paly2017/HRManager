@@ -19,8 +19,9 @@ public class LoginService implements LoginServiceI{
      * @return
      */
     @Override
-    public boolean doLogin(String userName, String password) {
-        Employee employee = iEmployeeOper.findByNameAndPassword(userName,password);
+    public boolean doLogin(Long userName, String password) {
+        Employee employee = iEmployeeOper.
+                            findByEmployeeNumberAndPassword(userName, password);
         System.out.println(employee);
 
         return false;

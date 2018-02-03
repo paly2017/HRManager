@@ -9,6 +9,6 @@ public interface LoginServiceI {
      * @param password
      * @return
      */
-    boolean doLogin(String userName,String password);
+    boolean doLogin(Long userName,String password);
 
 }
