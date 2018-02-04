@@ -1,3 +1,4 @@
+项目中遇到问题
 
 1,org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaAutoConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: No identifier specified for entity:
 com.example.demo.eneity.Move
@@ -25,3 +26,12 @@ public class Department {
  <html xmlns:th="http://www.thymeleaf.org">
  <li>欢迎：<span th:text="${session.userInfo.name}">name</span>&nbsp;</li>
  th:text 替换<span>标签的文本值
+
+ 5,thymeleaf模板，引入css,js文件
+使用th:src 或者th:href="@{}"
+<script th:src="@{/js/jquery.min.js}"></script>
+<link th:href="@{/css/style.css}" rel="stylesheet"/>
+
+6,thymeleaf模板，给事件方法中传参
+例如：onclick
+<a th:onclick="'upWork('+${session.userInfo.employeeNumber}+')'">

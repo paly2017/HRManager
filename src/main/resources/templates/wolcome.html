@@ -5,12 +5,12 @@
     <title>Welcome</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
-    <link rel="shortcut icon" href="favicon.ico"/>
-    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet"/>
-    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet"/>
-    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/css/animate.css" rel="stylesheet"/>
-    <link href="/css/style.css?v=4.1.0" rel="stylesheet"/>
+    <link rel="shortcut icon" th:href="@{favicon.ico}" />
+    <link th:href="@{css/bootstrap.min.css}"  rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <script>
         var myVar=setInterval(function(){myTimer()},1000);
         function myTimer(){
@@ -19,6 +19,7 @@
             document.getElementById("time").innerHTML=t;
         }
     </script>
+
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -33,9 +34,9 @@
                     <p>欢迎登录HR医院人事管理系统</p>
                     <p id="time">&nbsp;</p>
                     <p>&nbsp;</p>
-                    <p><a href="/attendance/addStart.do?employeeNumber=1001"
+                    <p><a th:onclick="'upWork('+${session.userInfo.employeeNumber}+')'"
                           class="btn btn-info btn-lg">&nbsp;上班签到&nbsp;</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        <a href="/attendance/addEnd.do?employeeNumber=1001"
+                        <a th:onclick="'downWork()'"
                            class="btn btn-info btn-lg">&nbsp;下班签到&nbsp;</a>
                     </p>
                     <p>&nbsp;</p>
@@ -46,18 +47,14 @@
     </div>
 </div>
 <!-- 全局js -->
-<script src="/js/jquery.min.js?v=2.1.4"></script>
-<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}" ></script>
 
 <!-- 自定义js -->
-<script src="/js/content.js?v=1.0.0"></script>
-
+<script th:src="@{/js/content.js}" ></script>
+<script th:src="@{/js/wolcome.js}"></script>
 <!-- layer javascript -->
-<script src="js/plugins/layer/layer.min.js"></script>
-<script>
-    $("a").click(function () {
-        parent.layer.alert('签到成功！')
-    });
-</script>
+<script th:src="@{js/plugins/layer/layer.min.js}" ></script>
+
 </body>
 </html>

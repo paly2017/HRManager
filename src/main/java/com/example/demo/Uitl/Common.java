@@ -1,5 +1,7 @@
 package com.example.demo.Uitl;
 
+import com.google.gson.Gson;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Time;
@@ -8,6 +10,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Common {
+
+    private static Gson gson;
+
+    static {
+        if (gson==null){
+            gson=new Gson();
+        }
+    }
+
+    /***
+     * 将对象转换为json字符串
+     * @param obj
+     * @return
+     */
+    public static String getJsonString(Object obj){
+        return gson.toJson(obj);
+    }
     /***
      * 获取httpsession
      * @param request
@@ -37,7 +56,7 @@ public class Common {
      */
     public static Time getSqlTime() throws ParseException {
         String s = getDate();
-        SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date=sp.parse(s);
         return new java.sql.Time(date.getTime());
     }
@@ -49,14 +68,24 @@ public class Common {
      */
     public static java.sql.Date getSqlDate() throws ParseException {
         String s = getDate();
-        SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date=sp.parse(s);
         return new java.sql.Date(date.getTime());
     }
 
+    /****
+     * 固定时间点处理方法
+     * @param time
+     * @return
+     * @throws ParseException
+     */
     public static Time getCheckTime(String time) throws ParseException {
         SimpleDateFormat sp = new SimpleDateFormat("HH:mm:ss");
         Date date = sp.parse(time);
         return new Time(date.getTime());
     }
+
+
+
+
 }
