@@ -30,7 +30,14 @@ function downWork() {
         url:"/downwork",
         data:{attendanceid:workid},
         success:function (msg) {
-            alert(msg)
-        }
+            if (msg==="ok"){
+                alert("签到成功")
+            }else {
+                alert("签到失败")
+            }
+        },
+    error:function () {
+        alert("签到失败")
+    }
     })
 }

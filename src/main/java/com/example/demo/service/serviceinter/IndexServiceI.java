@@ -7,4 +7,6 @@ import java.text.ParseException;
 public interface IndexServiceI {
 
     Attendance checkWork(Attendance attendance) throws ParseException;
+
+    boolean downWork(long id) throws ParseException;
 }
