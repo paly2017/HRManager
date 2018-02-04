@@ -15,6 +15,13 @@ import java.text.ParseException;
 public class IndexServiceImpl implements IndexServiceI {
     @Autowired
     private  IAttendanceOper iAttendanceOper;
+
+    /****
+     * 用户上班签到业务处理方法
+     * @param attendance
+     * @return
+     * @throws ParseException
+     */
     @Override
     public Attendance checkWork(Attendance attendance) throws ParseException {
         if (null==attendance)return null;

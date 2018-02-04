@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface IPositionOper extends JpaRepository<Position,Integer> {
 
-
+    Position findByPositionNumber(Long number);
 }
