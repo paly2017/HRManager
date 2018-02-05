@@ -32,7 +32,7 @@ public class IndexServiceImpl implements IndexServiceI {
         }else {
             attendance.setStartType(Confing.SYS_WORK_TYPE_NO.getKey());
         }
-        if (Common.getSqlTime().before(Common.getCheckTime("12:00:00"))){
+        if (Common.getSqlTime().after(Common.getCheckTime("12:00:00"))){
             attendance.setTimeType(Confing.SYS_AM_TIME.getKey());
         }else {
             attendance.setTimeType(Confing.SYS_PM_TIME.getKey());

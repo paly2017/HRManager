@@ -10,27 +10,27 @@ import javax.persistence.Id;
 public class Position {
   @Id
   @GeneratedValue
-  private Integer id;
-  private Integer positionNumber;
+  private Long id;
+  private Long positionNumber;
   private String name;
   private String level;
   private String notes;
 
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
 
-  public Integer getPositionNumber() {
+  public Long getPositionNumber() {
     return positionNumber;
   }
 
-  public void setPositionNumber(Integer positionNumber) {
+  public void setPositionNumber(Long positionNumber) {
     this.positionNumber = positionNumber;
   }
 
