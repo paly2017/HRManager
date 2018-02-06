@@ -1,17 +1,18 @@
 package com.example.demo.controls;
 
 import com.example.demo.Uitl.Common;
-import com.example.demo.eneity.Employee;
-import com.example.demo.eneity.Position;
+import com.example.demo.eneity.*;
 import com.example.demo.service.impl.OneSelfServiceImpl;
 import com.example.demo.service.impl.PositionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+
 
 /***
  * 个人资料信息处理控制器
@@ -91,5 +92,29 @@ public class OneselfControl {
         }
         if (oneSelfService.updateEmployee(employee))oneSelfService.updataSession(request,employee);
         return "oneself_update";
+    }
+
+    /***
+     * 个人考勤记录控制器
+     * @param request
+     * @return
+     */
+    @RequestMapping("oneselfattendance")
+    public String oneSelfAttendance(HttpServletRequest request){
+        oneSelfService.oneSelfAttenService(request);
+        return "oneself_attendance";
+    }
+
+    /***
+     * 加班列表控制器
+     * @return
+     */
+    @RequestMapping("addworkinfo")
+    public String onselfAddWorkList(Model model, @RequestParam("pageIndex") Long index){
+        index = index<1?1:index;
+        Page<Overtime> overtimes = oneSelfService.overtimePageService(index-1);
+        PageInfo<AddWorkInfo> pageInfo =oneSelfService.addWorkInfoPage(overtimes,index);
+        model.addAttribute("datas",pageInfo);
+        return "oneself_overtime";
     }
 }

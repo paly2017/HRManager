@@ -11,38 +11,38 @@ import javax.persistence.Id;
 public class Overtime {
   @Id
   @GeneratedValue
-  private Integer id;
-  private Integer departmentNumber;
-  private Integer employeeNumber;
+  private Long id;
+  private Long departmentNumber;
+  private Long employeeNumber;
   private java.sql.Date day;
   private java.sql.Time startTime;
   private java.sql.Time endTime;
   private String notes;
 
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
 
-  public Integer getDepartmentNumber() {
+  public Long getDepartmentNumber() {
     return departmentNumber;
   }
 
-  public void setDepartmentNumber(Integer departmentNumber) {
+  public void setDepartmentNumber(Long departmentNumber) {
     this.departmentNumber = departmentNumber;
   }
 
 
-  public Integer getEmployeeNumber() {
+  public Long getEmployeeNumber() {
     return employeeNumber;
   }
 
-  public void setEmployeeNumber(Integer employeeNumber) {
+  public void setEmployeeNumber(Long employeeNumber) {
     this.employeeNumber = employeeNumber;
   }
 
