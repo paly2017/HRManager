@@ -105,16 +105,5 @@ public class OneselfControl {
         return "oneself_attendance";
     }
 
-    /***
-     * 加班列表控制器
-     * @return
-     */
-    @RequestMapping("addworkinfo")
-    public String onselfAddWorkList(Model model, @RequestParam("pageIndex") Long index){
-        index = index<1?1:index;
-        Page<Overtime> overtimes = oneSelfService.overtimePageService(index-1);
-        PageInfo<AddWorkInfo> pageInfo =oneSelfService.addWorkInfoPage(overtimes,index);
-        model.addAttribute("datas",pageInfo);
-        return "oneself_overtime";
-    }
+
 }

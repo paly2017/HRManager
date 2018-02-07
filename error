@@ -35,3 +35,25 @@ public class Department {
 6,thymeleaf模板，给事件方法中传参
 例如：onclick
 <a th:onclick="'upWork('+${session.userInfo.employeeNumber}+')'">
+
+7,jpa 分页查询
+ Sort sort = new Sort(Sort.Direction.DESC,"day");
+ 定义了按照日期排序
+ Pageable pageable = new PageRequest(Math.toIntExact(index),10,sort);
+ 分页的起始页码和每页显示数据
+ 调用
+ findAll(pageable);
+ 将Pageable 作为参数传递给findAll(Pageable pageable),返回Page<T> 类型数据
+ 使用迭代器读取，查询到的对象；
+
+ 8,thymeleaf模板，href 连接传参
+
+ <a  th:with="isNum=${datas.pageIndex}+1" th:href="@{'/addworkinfo?pageIndex='+${isNum}}"
+                                        aria-label="Next"> <span aria-hidden="true">后一页</span>
+ th:href="@{'/addworkinfo?pageIndex='+${isNum}}"拼字符串的形式
+ th:with="isNum=${datas.pageIndex}+1" 给变量赋值，并可以进行运算；
+
+ 9,org.xml.sax.SAXException: Scanner State 24 not Recognized
+ 需要去掉 <!DOCTYPE>
+
+

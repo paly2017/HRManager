@@ -11,9 +11,9 @@ import javax.persistence.Id;
 public class Lea {
   @Id
   @GeneratedValue
-  private Integer id;
-  private Integer employeeNumber;
-  private Integer departmentNumber;
+  private Long id;
+  private Long employeeNumber;
+  private Long departmentNumber;
   private java.sql.Date startTime;
   private java.sql.Date endTime;
   private String days;
@@ -24,29 +24,29 @@ public class Lea {
   private String notes;
 
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
 
-  public Integer getEmployeeNumber() {
+  public Long getEmployeeNumber() {
     return employeeNumber;
   }
 
-  public void setEmployeeNumber(Integer employeeNumber) {
+  public void setEmployeeNumber(Long employeeNumber) {
     this.employeeNumber = employeeNumber;
   }
 
 
-  public Integer getDepartmentNumber() {
+  public Long getDepartmentNumber() {
     return departmentNumber;
   }
 
-  public void setDepartmentNumber(Integer departmentNumber) {
+  public void setDepartmentNumber(Long departmentNumber) {
     this.departmentNumber = departmentNumber;
   }
 

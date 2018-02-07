@@ -102,7 +102,10 @@ public class OneSelfServiceImpl implements OneSelfService {
             Department department = new Department();
             department.setDepartmentNumber(overtime.getDepartmentNumber());
             Department department1 = iDepartmentOper.findOne(Example.of(department));
-            AddWorkInfo addWorkInfo = new AddWorkInfo(department1,overtime);
+            Employee employee = new Employee();
+            employee.setEmployeeNumber(overtime.getEmployeeNumber());
+            Employee employee1 = iEmployeeOper.findOne(Example.of(employee));
+            AddWorkInfo addWorkInfo = new AddWorkInfo(employee1,department1,overtime);
             addWorkInfos.add(addWorkInfo);
         }
         infoPageInfo.setList(addWorkInfos);

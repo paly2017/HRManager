@@ -11,8 +11,8 @@ import javax.persistence.Id;
 public class Employee {
   @Id
   @GeneratedValue
-  private long id;
-  private long employeeNumber;
+  private Long id;
+  private Long employeeNumber;
   private String name;
   private String gender;
   private java.sql.Date birthday;
@@ -21,27 +21,27 @@ public class Employee {
   private String address;
   private String photo;
   private String education;
-  private long departmentNumber;
-  private long positionNumber;
+  private Long departmentNumber;
+  private Long positionNumber;
   private java.sql.Date inTime;
   private String password;
   private String notes;
 
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
 
-  public long getEmployeeNumber() {
+  public Long getEmployeeNumber() {
     return employeeNumber;
   }
 
-  public void setEmployeeNumber(long employeeNumber) {
+  public void setEmployeeNumber(Long employeeNumber) {
     this.employeeNumber = employeeNumber;
   }
 
@@ -118,20 +118,20 @@ public class Employee {
   }
 
 
-  public long getDepartmentNumber() {
+  public Long getDepartmentNumber() {
     return departmentNumber;
   }
 
-  public void setDepartmentNumber(long departmentNumber) {
+  public void setDepartmentNumber(Long departmentNumber) {
     this.departmentNumber = departmentNumber;
   }
 
 
-  public long getPositionNumber() {
+  public Long getPositionNumber() {
     return positionNumber;
   }
 
-  public void setPositionNumber(long positionNumber) {
+  public void setPositionNumber(Long positionNumber) {
     this.positionNumber = positionNumber;
   }
 

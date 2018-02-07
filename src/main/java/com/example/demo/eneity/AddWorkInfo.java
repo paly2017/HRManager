@@ -13,6 +13,12 @@ public class AddWorkInfo {
         this.overtime = overtime;
     }
 
+    public AddWorkInfo(Employee employee, Department department, Overtime overtime) {
+        this.employee = employee;
+        this.department = department;
+        this.overtime = overtime;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
