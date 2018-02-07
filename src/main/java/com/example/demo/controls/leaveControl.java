@@ -3,10 +3,12 @@ package com.example.demo.controls;
 import com.example.demo.Uitl.Common;
 import com.example.demo.eneity.Employee;
 import com.example.demo.eneity.Lea;
+import com.example.demo.eneity.PageInfo;
 import com.example.demo.service.impl.LeaServiceImpl;
 import com.sun.org.glassfish.external.probe.provider.annotations.ProbeParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,7 +61,15 @@ public class leaveControl {
         return "error";
     }
     @RequestMapping("leavelist")
-    public String leaveList(@RequestParam("pageindex")Long pageNo){
-        return null;
+    public String leaveList(@RequestParam("pageindex")Long pageNo,
+                            HttpServletRequest request,
+                            Model model){
+        pageNo=pageNo<1?1:pageNo;
+        Employee employee = (Employee) Common.getSession(request).getAttribute("userInfo");
+        Lea lea = new Lea();
+        lea.setEmployeeNumber(employee.getEmployeeNumber());
+        PageInfo<Lea> pageInfo = leaService.leavesInfoByName(lea,pageNo-1);
+        model.addAttribute("leaInfo",pageInfo);
+        return "leave_list";
     }
 }

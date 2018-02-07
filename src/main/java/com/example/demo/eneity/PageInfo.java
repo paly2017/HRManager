@@ -1,5 +1,7 @@
 package com.example.demo.eneity;
 
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 /***
@@ -12,6 +14,7 @@ public class PageInfo<T> {
     private Long pageCount;//总页数
     private Long dataCount;//数据总条数
     private List<T> list;
+    private Page<T> tPage;
 
 
     public PageInfo(Long pageSize, Long pageIndex, Long dataCount) {
@@ -49,5 +52,13 @@ public class PageInfo<T> {
 
     public void setList(List<T> list) {
         this.list = list;
+    }
+
+    public Page<T> gettPage() {
+        return tPage;
+    }
+
+    public void settPage(Page<T> tPage) {
+        this.tPage = tPage;
     }
 }

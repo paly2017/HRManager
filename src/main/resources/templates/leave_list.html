@@ -18,7 +18,7 @@
     <link th:href="@{/css/style.css}"  rel="stylesheet"/>
 
 
-    <link th:href="@{/dist/sweetalert.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/dist/sweetalert.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -43,50 +43,30 @@
                         </tr>
                         </thead>
                         <tbody>
-
-                        <tr class="gradeA">
-                            <td>1</td>
-                            <td>admin</td>
-
-                            <td>null</td>
-                            <td>null</td>
-                            <td>6</td>
-                            <td>事假</td>
-                            <td>抢个银行去</td>
-                            <td>null</td>
+                        <tr class="gradeA" th:each="lea,count:${leaInfo.tPage}">
+                            <td th:text="${count.count}">1</td>
+                            <td th:text="${session.userInfo.name}">admin</td>
+                            <td th:text="${lea.startTime}">null</td>
+                            <td th:text="${lea.endTime}">null</td>
+                            <td th:text="${lea.days}">6</td>
+                            <td th:text="${lea.type}">事假</td>
+                            <td th:text="${lea.reason}">抢个银行去</td>
+                            <td th:text="${lea.status}">null</td>
                         </tr>
-
-                        <tr class="gradeA">
-                            <td>2</td>
-                            <td>admin</td>
-
-                            <td>null</td>
-                            <td>null</td>
-                            <td>1</td>
-                            <td>事假</td>
-                            <td>抢个媳妇</td>
-                            <td>null</td>
-                        </tr>
-
                         </tbody>
                     </table>
                     <div>
 							<span style="float: left; padding: 5px">
-								当前&nbsp;<span style="color: red;">1</span>&nbsp;/&nbsp;<b>2</b>&nbsp;页&nbsp;&nbsp;
-								总共&nbsp;<b>4</b>&nbsp;条</span>
+								当前&nbsp;<span style="color: red;" th:text="${leaInfo.pageIndex}">1</span>&nbsp;/&nbsp;<b id="pages" th:text="${leaInfo.pageCount}">2</b>&nbsp;页&nbsp;&nbsp;
+								总共&nbsp;<b th:text="${leaInfo.dataCount}">4</b>&nbsp;条</span>
                         <nav aria-label="Page navigation" style="margin: 0 auto; width: 200px">
                             <ul class="pagination" style="margin: 0;">
                                 <li>
-                                    <a href="/leave/oneself.do?pageNo=1"
+                                    <a th:with="pageNo=${leaInfo.pageIndex}-1" th:href="@{'/leavelist?pageindex='+${pageNo}}"
                                        aria-label="Previous"> <span aria-hidden="true">前一页</span>
                                     </a>
                                 </li>
-
-                                <li><a href="/leave/oneself.do?pageNo=1">1</a></li>
-
-                                <li><a href="/leave/oneself.do?pageNo=2">2</a></li>
-
-                                <li><a href="/leave/oneself.do?pageNo=2"
+                                <li><a  th:href="@{'/leavelist?pageindex='+${pageNo}}" th:with="pageNo=${leaInfo.pageIndex}+1"
                                        aria-label="Next"> <span aria-hidden="true">后一页</span>
                                 </a></li>
                             </ul>
@@ -112,7 +92,6 @@
 
 <!-- layer javascript -->
 <script th:src="@{js/plugins/layer/layer.min.js}"></script>
-
 <script type="text/javascript">
     $(document).ready(function(){
         $("#update").click(function(){
