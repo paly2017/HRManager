@@ -37,9 +37,9 @@ public class LeaServiceImpl implements LeaServiceI {
     @Override
     public PageInfo<Lea> leavesInfoByName(Lea lea, Long pageNo) {
         Sort sort = new Sort(Sort.Direction.DESC,"days");
-        Pageable pageable = new PageRequest(Math.toIntExact(pageNo),2,sort);
+        Pageable pageable = new PageRequest(Math.toIntExact(pageNo),5,sort);
         Page<Lea> leaPage = iLeaOper.findAll(Example.of(lea),pageable);
-        PageInfo<Lea> pageInfo = new PageInfo<Lea>(2L,pageNo+1, (long) leaPage.getTotalElements());
+        PageInfo<Lea> pageInfo = new PageInfo<Lea>(5L,pageNo+1, (long) leaPage.getTotalElements());
         pageInfo.settPage(leaPage);
         return pageInfo;
     }

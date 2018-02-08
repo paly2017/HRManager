@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HR医院 - 在职员工列表</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+
+    <link rel="shortcut icon" th:href="@{favicon.ico}"/>
+    <link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.css}"  rel="stylesheet"/>
+
+    <!-- Data Tables -->
+    <link th:href="@{/css/plugins/dataTables/dataTables.bootstrap.css}"
+          rel="stylesheet"/>
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}"  rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/sweetalert.css}" />
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>在职员工列表</h5>
+                </div>
+                <div class="ibox-content">
+                    <div style="margin-bottom: 8px">
+                        <a href="/employee/toAdd.do" class="btn btn-success">添加员工</a>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>工号</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>电话</th>
+                            <th>部门名称</th>
+                            <th>职称</th>
+                            <th>入职时间</th>
+                            <th>管理</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="gradeA" th:each="emp,count:${empinfo.list}">
+                            <td th:text="${count.count}">1</td>
+                            <td th:text="${emp.gethistory().employeeNumber}">1012</td>
+                            <td th:text="${emp.gethistory().name}">张璐</td>
+                            <td th:text="${emp.gethistory().gender}">男</td>
+                            <td th:text="${emp.gethistory().telephone}">18832050264</td>
+                            <td th:text="${emp.department.name}">人事部</td>
+                            <td th:text="${emp.position.name}">人事部主任</td>
+                            <td th:text="${emp.gethistory().inTime}">2017-07-05</td>
+                            <td><a th:href="@{'empdetial?empNo='+${emp.gethistory().getEmployeeNumber()}}"  class="btn btn-info">查看</a>&nbsp;&nbsp;
+                                <a th:href="@{'sendupdateemp?empNo='+${emp.gethistory().getEmployeeNumber()}}" class="btn btn-primary">修改</a>&nbsp;&nbsp;
+                                <a th:onclick="'deleteEmp('+${emp.gethistory().employeeNumber}+')'" class="btn btn-danger delete">删除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div>
+							<span style="float: left; padding: 5px">
+								当前&nbsp;<span style="color: red;" th:text="${empinfo.pageIndex}">1</span>&nbsp;/&nbsp;<b th:text="${empinfo.pageCount}">2</b>&nbsp;页&nbsp;&nbsp;
+								总共&nbsp;<b th:text="${empinfo.dataCount}">6</b>&nbsp;条</span>
+                        <nav aria-label="Page navigation" style="margin: 0 auto; width: 240px">
+                            <ul class="pagination" style="margin: 0;">
+                                <li>
+                                    <a th:href="@{'/emplist?pageindex='+${pageNo}}" th:with="pageNo=${empinfo.pageIndex}-1"
+                                       aria-label="Previous"> <span aria-hidden="true">前一页</span>
+                                    </a>
+                                </li>
+                                <li th:each="i:${#numbers.sequence(1,empinfo.pageCount)}"><a th:href="@{'/emplist?pageindex='+${i}}" th:text="${i}">1</a></li>
+                                <li><a th:href="@{'/emplist?pageindex='+${pageNo}}" th:with="pageNo=${empinfo.pageIndex}+1"
+                                       aria-label="Next"> <span aria-hidden="true">后一页</span>
+                                </a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/jeditable/jquery.jeditable.js}"></script>
+
+<!-- Data Tables -->
+<script th:src="@{/js/plugins/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/js/plugins/dataTables/dataTables.bootstrap.js}"></script>
+
+<!-- 自定义js -->
+<script th:src="@{/js/content.js}"></script>
+
+<!-- layer javascript -->
+<script th:src="@{js/plugins/layer/layer.min.js}"></script>
+
+<script type="text/javascript">
+
+    function del(id){
+        parent.layer.confirm('确认删除？', {
+            btn: ['确认','取消'], //按钮
+            shade: false //不显示遮罩
+        }, function(){
+            parent.layer.msg('删除成功！', {icon: 1});
+            location.href="./"+ id +"/delete.do";
+        });
+    }
+</script>
+<script>
+    function deleteEmp(empNo) {
+        parent.layer.confirm('确认删除？', {
+            btn: ['确认','取消'], //按钮
+            shade: false //不显示遮罩
+        },function () {
+            $.ajax({
+                type:"post",
+                url:"/deleteempl",
+                data:{empnumber:empNo},
+                success:function (msg) {
+                    if (msg==="ok"){
+                        $(this).parent().parent().remove("tr");
+                        alert("删除成功")
+                    }else {
+                        alert("删除失败")
+                    }
+                }
+            })
+        });
+
+    }
+</script>
+</body>
+</html>

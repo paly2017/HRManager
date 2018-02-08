@@ -6,6 +6,8 @@ import com.example.demo.service.serviceinter.PositionServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PositionServiceImpl implements PositionServiceI {
     @Autowired
@@ -15,5 +17,13 @@ public class PositionServiceImpl implements PositionServiceI {
         Position position = iPositionOper.findByPositionNumber(positionNum);
         if (null==position)return null;
         return position;
+    }
+
+    /***
+     * 职位全查
+     * @return
+     */
+    public List<Position> positionList(){
+        return iPositionOper.findAll();
     }
 }

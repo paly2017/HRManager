@@ -56,4 +56,11 @@ public class Department {
  9,org.xml.sax.SAXException: Scanner State 24 not Recognized
  需要去掉 <!DOCTYPE>
 
+10,thymeleaf模板 根据长度循环 及for i 循环
+ <li th:each="i:${#numbers.sequence(1,leaInfo.pageCount)}"><a th:href="@{'/leavelist?pageindex='+${i}}" th:text="${i}">2</a></li>
+
+ 11,jpa 跟新数据库
+ 使用saveAndFlush（）传入被修改的对象，传入参数的主键id需要与数据库中主键一直，否则增加新的数据；
+
+
 

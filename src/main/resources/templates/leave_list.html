@@ -66,6 +66,7 @@
                                        aria-label="Previous"> <span aria-hidden="true">前一页</span>
                                     </a>
                                 </li>
+                                <li th:each="i:${#numbers.sequence(1,leaInfo.pageCount)}"><a th:href="@{'/leavelist?pageindex='+${i}}" th:text="${i}">2</a></li>
                                 <li><a  th:href="@{'/leavelist?pageindex='+${pageNo}}" th:with="pageNo=${leaInfo.pageIndex}+1"
                                        aria-label="Next"> <span aria-hidden="true">后一页</span>
                                 </a></li>

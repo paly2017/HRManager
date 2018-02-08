@@ -54,4 +54,9 @@ public class DepartmentImpl implements DepartmentServiceI {
         return false;
     }
 
+    public Department getDepartment(Long deparNum){
+        Department department = new Department();
+        department.setDepartmentNumber(deparNum);
+        return iDepartmentOper.findOne(Example.of(department));
+    }
 }
