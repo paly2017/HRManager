@@ -120,4 +120,14 @@ public class HistoryServiceImpl implements HistoryServiceI {
         employee1.setEmployeeNumber(employee);
         return iEmployeeOper.findOne(Example.of(employee1));
     }
+
+    /**
+     * 查询最大员工编号
+     * @return
+     */
+    @Override
+    public Long maxEmpNumberInHistory() {
+        int maxEmp = iHistoryOper.getMaxNumByEmployeeNumber();
+        return Long.valueOf(maxEmp+1);
+    }
 }

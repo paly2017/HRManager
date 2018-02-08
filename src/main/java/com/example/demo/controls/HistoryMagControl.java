@@ -212,4 +212,24 @@ public class HistoryMagControl {
         historyService.updateHistory(history);
         return "ok";
     }
+
+    /***
+     * 跳转至员工增加页面
+     * @return
+     */
+    @RequestMapping("sendadd")
+    public String sendAddEmployee(Model model){
+        Long maxEmp = historyService.maxEmpNumberInHistory();
+        model.addAttribute("maxno",maxEmp);
+        return "employee_add";
+    }
+
+    /***
+     * 新员工信息增加
+     * @return
+     */
+    @PostMapping("doAdd")
+    public String addNewEmployee(){
+        return null;
+    }
 }
