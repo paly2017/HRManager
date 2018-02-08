@@ -144,4 +144,49 @@ public class HistoryServiceImpl implements HistoryServiceI {
         if (null!=employee1&&null!=history1)return true;
         return false;
     }
+
+    /***
+     * 离休人员分页查询
+     * @param index
+     * @return
+     */
+    public PageInfo<HistoryInfo> historyInfoPageInfo(Long index){
+        Sort sort = new Sort(Sort.Direction.ASC,"id");
+        index=index<=0?1:index;
+        Pageable pageable = new PageRequest((int) (index-1),5,sort);
+        Page<History> historyPage = iHistoryOper.findAllByStatusOrStatus("离职","退休",pageable);
+        Iterator<History> it = historyPage.iterator();
+        List<HistoryInfo> infoList = new ArrayList<>();
+        while (it.hasNext()){
+            History history = it.next();
+            Department department = new Department();
+            department.setDepartmentNumber(history.getDepartmentNumber());
+            department = iDepartmentOper.findOne(Example.of(department));
+            Position position = new Position();
+            position.setPositionNumber(history.getPositionNumber());
+            HistoryInfo historyInfo = new HistoryInfo();
+            historyInfo.setDepartment(department);
+            historyInfo.setPosition(position);
+            historyInfo.sethistory(history);
+            infoList.add(historyInfo);
+        }
+        PageInfo<HistoryInfo> pageInfo =new PageInfo<>(5L,index,historyPage.getTotalElements());
+        pageInfo.setList(infoList);
+        return pageInfo ;
+    }
+
+    /***
+     * 离休员工详细信息处理
+     * @param empNo
+     * @return
+     */
+    public HistoryInfo historyInfo(Long empNo){
+        History history = getHistory(empNo);
+        if (history==null)return null;
+        Department department = new Department();
+        department.setDepartmentNumber(history.getDepartmentNumber());
+        department = iDepartmentOper.findOne(Example.of(department));
+        Position position = iPositionOper.findByPositionNumber(history.getPositionNumber());
+        return new HistoryInfo(history,position,department);
+    }
 }

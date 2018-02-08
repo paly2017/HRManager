@@ -295,4 +295,29 @@ public class HistoryMagControl {
         model.addAttribute("maxno",empNumber);
         return "employee_add";
     }
+
+    /***
+     * 全部离休员工，分页展示
+     * @param index
+     * @param model
+     * @return
+     */
+    @RequestMapping("pagehistorylist")
+    public String historyList(@RequestParam("pageIndex")Long index,Model model){
+        PageInfo<HistoryInfo> historyInfoPageInfo = historyService.historyInfoPageInfo(index);
+        model.addAttribute("his",historyInfoPageInfo);
+        return "history_list";
+    }
+
+    /***
+     * 离休员工详细信息控制器
+     * @param empNo
+     * @param model
+     * @return
+     */
+    @RequestMapping("dohisdetail")
+    public String historyDetail(@RequestParam("empNo")Long empNo,Model model){
+        model.addAttribute("hisInfo",historyService.historyInfo(empNo));
+        return "history_detail";
+    }
 }
