@@ -153,40 +153,39 @@
 <!-- layer javascript -->
 <script th:src="@{js/plugins/layer/layer.min.js}"></script>
 <script>
-    $().ready(function() {
+    $().ready(function () {
         $("#commentForm").validate();
     });
     $.validator.setDefaults({
-        submitHandler: function() {
-            parent.layer.msg('修改成功！',{icon: 1});
+        submitHandler: function () {
+            parent.layer.msg('修改成功！', {icon: 1});
             form.submit();
         }
     });
-</script>
-<script>
+
     $(document).ready(function () {
         $.ajax({
-            type:"post",
-            url:"/showalldepartment",
-            success:function (msg) {
+            type: "post",
+            url: "/showalldepartment",
+            success: function (msg) {
                 $("#departmentNumber").empty();
                 $("#departmentNumber").append("<option>--请选择部门--</option>");
                 var deparmsg = jQuery.parseJSON(msg);
                 deparmsg.forEach(function (value) {
-                    $("#departmentNumber").last().append("<option value="+value.departmentNumber+">"+value.name+"</option>")
+                    $("#departmentNumber").last().append("<option value=" + value.departmentNumber + ">" + value.name + "</option>")
                 })
             }
         });
 
         $.ajax({
-            type:"post",
-            url:"/toposttion",
-            success:function (msg) {
+            type: "post",
+            url: "/toposttion",
+            success: function (msg) {
                 $("#positionNumber").empty();
                 $("#positionNumber").append("<option>--请选择职称--</option>");
                 var posMsg = jQuery.parseJSON(msg);
                 posMsg.forEach(function (value) {
-                    $("#positionNumber").last().append("<option value="+value.positionNumber+">"+value.name+"</option>");
+                    $("#positionNumber").last().append("<option value=" + value.positionNumber + ">" + value.name + "</option>");
                 })
             }
         })

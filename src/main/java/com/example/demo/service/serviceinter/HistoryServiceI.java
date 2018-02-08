@@ -23,4 +23,6 @@ public interface HistoryServiceI {
     Employee getEmployee(Long employee);
 
     Long maxEmpNumberInHistory();
+
+    boolean saveNewEmpAndHis(Employee employee,History history);
 }

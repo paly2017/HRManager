@@ -130,4 +130,18 @@ public class HistoryServiceImpl implements HistoryServiceI {
         int maxEmp = iHistoryOper.getMaxNumByEmployeeNumber();
         return Long.valueOf(maxEmp+1);
     }
+
+    /***
+     * 新增员工信息保存
+     * @param employee
+     * @param history
+     * @return
+     */
+    @Override
+    public boolean saveNewEmpAndHis(Employee employee, History history) {
+        Employee employee1 = iEmployeeOper.save(employee);
+        History history1 =iHistoryOper.save(history);
+        if (null!=employee1&&null!=history1)return true;
+        return false;
+    }
 }

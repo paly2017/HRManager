@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.sql.Time;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -209,6 +211,12 @@ public class HistoryMagControl {
         historyService.deleteEmployee(employee);
         History history = historyService.getHistory(empNo);
         history.setStatus("离职");
+        try {
+            Date date =Common.getSqlDate();
+            history.setOutTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         historyService.updateHistory(history);
         return "ok";
     }
@@ -217,7 +225,7 @@ public class HistoryMagControl {
      * 跳转至员工增加页面
      * @return
      */
-    @RequestMapping("sendadd")
+    @RequestMapping("sendaddinfo")
     public String sendAddEmployee(Model model){
         Long maxEmp = historyService.maxEmpNumberInHistory();
         model.addAttribute("maxno",maxEmp);
@@ -228,8 +236,63 @@ public class HistoryMagControl {
      * 新员工信息增加
      * @return
      */
-    @PostMapping("doAdd")
-    public String addNewEmployee(){
-        return null;
+    @RequestMapping("/newhistoryinfo")
+    public String addNewEmployee(@RequestParam("employeeNumber")Long empNumber,
+                                 @RequestParam("name")String empName,
+                                 @RequestParam("password")String password,
+                                 @RequestParam("password2")String password2,
+                                 @RequestParam("gender")String gender,
+                                 @RequestParam("date")Date birthday,
+                                 @RequestParam("telephone")String telephone,
+                                 @RequestParam("email")String email,
+                                 @RequestParam("address") String address,
+                                 @RequestParam("education")String education,
+                                 @RequestParam("departmentNumber") Long deperNo,
+                                 @RequestParam("positionNumber")Long posNo,
+                                 @RequestParam("notes")String notes,
+                                 Model model){
+        if (empName==null||!password.equals(password2)){
+            model.addAttribute("maxno",empNumber);
+            return "employee_add";
+        }
+        Employee employee =new Employee();
+        History history = new History();
+        employee.setEmployeeNumber(empNumber);
+        history.setEmployeeNumber(empNumber);
+        employee.setName(empName);
+        history.setName(empName);
+        employee.setPassword(password);
+        employee.setGender(gender);
+        history.setGender(gender);
+        employee.setBirthday(birthday);
+        history.setBirthday(birthday);
+        employee.setTelephone(telephone);
+        history.setTelephone(telephone);
+        employee.setEmail(email);
+        history.setEmail(email);
+        employee.setAddress(address);
+        history.setAddress(address);
+        employee.setEducation(education);
+        history.setEducation(education);
+        employee.setDepartmentNumber(deperNo);
+        history.setDepartmentNumber(deperNo);
+        employee.setPositionNumber(posNo);
+        history.setPositionNumber(posNo);
+        history.setStatus("在职");
+        history.setNotes(notes);
+        employee.setNotes(notes);
+        try {
+            Date date = Common.getSqlDate();
+            employee.setInTime(date);
+            history.setInTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (historyService.saveNewEmpAndHis(employee,history)){
+            model.addAttribute("maxno",empNumber+1);
+            return "employee_add";
+        }
+        model.addAttribute("maxno",empNumber);
+        return "employee_add";
     }
 }
