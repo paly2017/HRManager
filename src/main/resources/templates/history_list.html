@@ -56,7 +56,7 @@
                             <td th:text="${history.gethistory().outTime}">null</td>
                             <td th:text="${history.gethistory().status}">离职</td>
                             <td><a th:href="@{'/dohisdetail?empNo='+${history.gethistory().getEmployeeNumber()}}" class="btn btn-info">查看</a>&nbsp;&nbsp;
-                                <a href="/history/12/toUpdate.do" class="btn btn-primary">修改</a>&nbsp;&nbsp;
+                                <a th:href="@{'tohisupdate?empNo='+${history.gethistory().getEmployeeNumber()}}" class="btn btn-primary">修改</a>&nbsp;&nbsp;
                             </td>
                         </tr>
                         </tbody>

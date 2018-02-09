@@ -129,7 +129,8 @@ public class HistoryMagControl {
                                      @RequestParam("departmentNumber") Long deperNo,
                                      @RequestParam("positionNumber")Long posNo,
                                      @RequestParam("status")String status,
-                                     @RequestParam("notes")String notes,Model model){
+                                     @RequestParam("notes")String notes,
+                                     Model model){
         Employee employee = historyService.getEmployee(empNumber);
         History history = historyService.getHistory(empNumber);
         if (!"".equals(empNumber)){
@@ -319,5 +320,59 @@ public class HistoryMagControl {
     public String historyDetail(@RequestParam("empNo")Long empNo,Model model){
         model.addAttribute("hisInfo",historyService.historyInfo(empNo));
         return "history_detail";
+    }
+
+    /***
+     * 跳转至离休员工信息修改页面
+     * @param empNo
+     * @param model
+     * @return
+     */
+    @RequestMapping("tohisupdate")
+    public String historySendUpdate(@RequestParam("empNo")Long empNo,Model model){
+        model.addAttribute("hisInfo",historyService.historyInfo(empNo));
+        return "history_update";
+    }
+
+    /***
+     * 离休员工更新控制器
+     * @param empNumber
+     * @param empName
+     * @param gender
+     * @param birthday
+     * @param telephone
+     * @param email
+     * @param address
+     * @param education
+     * @param home
+     * @param notes
+     * @param model
+     * @return
+     */
+    @PostMapping("dohisupdate")
+    public String historyUpdate(@RequestParam("employeeNumber")Long empNumber,
+                                @RequestParam("name")String empName,
+                                @RequestParam("gender")String gender,
+                                @RequestParam("date")Date birthday,
+                                @RequestParam("telephone")String telephone,
+                                @RequestParam("email")String email,
+                                @RequestParam("address") String address,
+                                @RequestParam("education")String education,
+                                @RequestParam("home")String home,
+                                @RequestParam("notes")String notes,
+                                Model model){
+        History history = historyService.getHistory(empNumber);
+        history.setHome(home);
+        history.setNotes(notes);
+        history.setEducation(education);
+        history.setAddress(address);
+        history.setEmail(email);
+        history.setBirthday(birthday);
+        history.setTelephone(telephone);
+        history.setGender(gender);
+        history.setName(empName);
+        history = historyService.updateHistory(history);
+        model.addAttribute("hisInfo",historyService.historyInfo(history.getEmployeeNumber()));
+        return "history_update";
     }
 }

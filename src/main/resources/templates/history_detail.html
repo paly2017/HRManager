@@ -120,7 +120,7 @@
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-8">
-                                <a href="/retire/12/toUpdate.do" class="btn btn-primary">修&nbsp;&nbsp;改</a>&nbsp;&nbsp;
+                                <a th:href="@{'tohisupdate?empNo='+${hisInfo.gethistory().employeeNumber}}" class="btn btn-primary">修&nbsp;&nbsp;改</a>&nbsp;&nbsp;
                                 <a href="/pagehistorylist?pageIndex=1" class="btn btn-info">返&nbsp;&nbsp;回</a>
                             </div>
                         </div>
