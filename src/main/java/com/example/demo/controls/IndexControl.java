@@ -20,7 +20,7 @@ public class IndexControl {
     @Autowired
     private IndexServiceImpl indexService;
     @RequestMapping("upwork")
-    public String upWork(@RequestParam("employeeNumber") Integer id){
+    public String upWork(@RequestParam("employeeNumber") Long id){
         if (null==id){
             return "no";
         }

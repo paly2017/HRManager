@@ -5,7 +5,9 @@ public class AddWorkInfo {
     private Department department;
     private Overtime overtime;
 
-    public AddWorkInfo() {
+    public AddWorkInfo(Employee employee, Overtime overtime) {
+        this.employee=employee;
+        this.overtime=overtime;
     }
 
     public AddWorkInfo(Department department, Overtime overtime) {

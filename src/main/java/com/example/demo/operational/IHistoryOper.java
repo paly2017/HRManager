@@ -11,4 +11,6 @@ public interface IHistoryOper extends JpaRepository<History,Long> {
     int getMaxNumByEmployeeNumber();
 
     Page<History> findAllByStatusOrStatus(String status1, String status2, Pageable pageable);
+
+    History findByEmployeeNumber(Long number);
 }

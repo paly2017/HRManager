@@ -6,6 +6,8 @@ import com.example.demo.eneity.History;
 import com.example.demo.eneity.HistoryInfo;
 import com.example.demo.eneity.PageInfo;
 
+import java.util.List;
+
 public interface HistoryServiceI {
 
     PageInfo<HistoryInfo> employeeList(Long index);
@@ -27,4 +29,6 @@ public interface HistoryServiceI {
     boolean saveNewEmpAndHis(Employee employee,History history);
 
     HistoryInfo historyInfo(Long empNo);
+
+    List<HistoryInfo> historyInfoList();
 }

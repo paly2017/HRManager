@@ -11,47 +11,47 @@ import javax.persistence.Id;
 public class Move {
   @Id
   @GeneratedValue
-  private Integer id;
-  private Integer employeeNumber;
-  private Integer before;
-  private Integer after;
+  private Long id;
+  private Long employeeNumber;
+  private Long before;
+  private Long after;
   private java.sql.Timestamp time;
   private String manager;
   private String notes;
 
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
 
-  public Integer getEmployeeNumber() {
+  public Long getEmployeeNumber() {
     return employeeNumber;
   }
 
-  public void setEmployeeNumber(Integer employeeNumber) {
+  public void setEmployeeNumber(Long employeeNumber) {
     this.employeeNumber = employeeNumber;
   }
 
 
-  public Integer getBefore() {
+  public Long getBefore() {
     return before;
   }
 
-  public void setBefore(Integer before) {
+  public void setBefore(Long before) {
     this.before = before;
   }
 
 
-  public Integer getAfter() {
+  public Long getAfter() {
     return after;
   }
 
-  public void setAfter(Integer after) {
+  public void setAfter(Long after) {
     this.after = after;
   }
 

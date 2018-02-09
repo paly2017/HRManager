@@ -21,5 +21,11 @@ public interface OneSelfService {
 
     Page<Overtime> overtimePageService(Long index,Employee employee);
 
+    Page<Overtime> overtimePageService(Long index);
+
     PageInfo<AddWorkInfo> addWorkInfoPage(Page page, Long index);
+
+    AddWorkInfo OverTimeInfo(Long id);
+
+    Overtime updataOvertime(Overtime overtime);
 }

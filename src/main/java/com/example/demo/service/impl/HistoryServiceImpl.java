@@ -189,4 +189,20 @@ public class HistoryServiceImpl implements HistoryServiceI {
         Position position = iPositionOper.findByPositionNumber(history.getPositionNumber());
         return new HistoryInfo(history,position,department);
     }
+
+    /***
+     * 员工档案信息全查
+     * @return
+     */
+    public List<HistoryInfo> historyInfoList(){
+        List<History> historyList = iHistoryOper.findAll();
+        List<HistoryInfo> list = new ArrayList<>();
+        for (History history:historyList){
+            Position position = iPositionOper.findByPositionNumber(history.getPositionNumber());
+            Department department =iDepartmentOper.findByDepartmentNumber(history.getDepartmentNumber());
+            HistoryInfo historyInfo = new HistoryInfo(history,position,department);
+            list.add(historyInfo);
+        }
+        return list;
+    }
 }

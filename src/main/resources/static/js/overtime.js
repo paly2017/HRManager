@@ -29,7 +29,7 @@ function departmentname() {
         data:{empNum:nameNo},
         success:function (msg) {
             $("#employee").empty();
-            $("#employee").append("<option value=\"\">--请选择员工--</option>")
+            $("#employee").append("<option value=\"\">--请选择员工--</option>");
             var nameinfo=jQuery.parseJSON(msg);
             var num = nameinfo.length;
             nameinfo.forEach(function (value,index) {

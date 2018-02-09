@@ -75,7 +75,7 @@ public class OneSelfServiceImpl implements OneSelfService {
     }
 
     /***
-     * 加班信息分页查询
+     * 加班信息分页查询，按照个人
      * @param index
      * @return
      */
@@ -89,6 +89,17 @@ public class OneSelfServiceImpl implements OneSelfService {
         return overtimePage;
     }
 
+    /***
+     * 加班信息全查，分页
+     * @param index
+     * @return
+     */
+    public Page<Overtime> overtimePageService(Long index){
+        index=index<=0?1:index;
+        Sort sort = new Sort(Sort.Direction.DESC,"day");
+        Pageable pageable = new PageRequest(Math.toIntExact(index-1),10,sort);
+        return  iOvertimeOper.findAll(pageable);
+    }
     /****
      * 加班分页页面显示信息
      * @param page
@@ -96,6 +107,7 @@ public class OneSelfServiceImpl implements OneSelfService {
      * @return
      */
     public PageInfo<AddWorkInfo> addWorkInfoPage(Page page,Long index){
+        index=index<=0?1:index;
         Iterator<Overtime> iterator = (Iterator<Overtime>) page.iterator();
         PageInfo<AddWorkInfo> infoPageInfo =
                 new PageInfo<AddWorkInfo>(10L, index, page.getTotalElements());
@@ -115,6 +127,30 @@ public class OneSelfServiceImpl implements OneSelfService {
         return infoPageInfo;
     }
 
+    /***
+     * 一条加班信息及对应员工信息
+     * @param id
+     * @return
+     */
+    public AddWorkInfo OverTimeInfo(Long id){
+        if (id==null)return null;
+        Overtime overtime = iOvertimeOper.findOne(id);
+        if (null==overtime)return null;
+        Employee employee = new Employee();
+        employee.setEmployeeNumber(overtime.getEmployeeNumber());
+        employee = iEmployeeOper.findOne(Example.of(employee));
+        return new AddWorkInfo(employee,overtime);
+    }
+
+    /**
+     * 更新overtime
+     * @param overtime
+     * @return
+     */
+    @Override
+    public Overtime updataOvertime(Overtime overtime) {
+        return iOvertimeOper.saveAndFlush(overtime);
+    }
 
 
 }

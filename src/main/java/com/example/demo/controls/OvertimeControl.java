@@ -4,6 +4,8 @@ import com.example.demo.Uitl.Common;
 import com.example.demo.eneity.*;
 import com.example.demo.service.impl.DepartmentImpl;
 import com.example.demo.service.impl.OneSelfServiceImpl;
+import com.google.common.base.Optional;
+import com.sun.org.glassfish.external.probe.provider.annotations.ProbeParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,7 @@ public class OvertimeControl {
     @Autowired
     private DepartmentImpl department;
     /***
-     * 加班列表控制器,分页查询显示
+     * 加班列表控制器,分页查询显示，按照个人
      * @return
      */
     @RequestMapping("addworkinfo")
@@ -94,7 +96,68 @@ public class OvertimeControl {
        }else {
            return null;
        }
+    }
 
+    /***
+     * 加班全查，控制器
+     * @param model
+     * @param index
+     * @return
+     */
+    @RequestMapping("overtime/dolist")
+    public String showAllOvertime(Model model,@RequestParam("pageIndex") Long index){
+        index=index==null?1:index;
+        Page<Overtime> page = oneSelfService.overtimePageService(index);
+        PageInfo<AddWorkInfo> workInfoPageInfo =oneSelfService.addWorkInfoPage(page,index);
+        System.out.println(workInfoPageInfo.getList().size());
+        model.addAttribute("overs",workInfoPageInfo);
+        return "overtime_list";
+    }
 
+    /***
+     * 跳转至更新overtime页面
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("overtime/updata")
+    public String overtimeUpdate(@RequestParam("overtimeEmpNo") Long id,Model model,
+                                 HttpServletRequest request){
+        Common.getSession(request).setAttribute("overtime",id);
+        model.addAttribute("overtime",oneSelfService.OverTimeInfo(id));
+        return "overtime_update";
+    }
+
+    /***
+     * overtime数据更新
+     * @param request
+     * @param depNo
+     * @param empNo
+     * @param date
+     * @param model
+     * @return
+     */
+    @PostMapping("doupdate/overtime")
+    public String doOvertimeUpdate(HttpServletRequest request,
+                                   @RequestParam("departmentNumber")Long depNo,
+                                   @RequestParam("employeeNumber")Long empNo,
+                                   @RequestParam("date")Date date,Model model){
+        Optional.of(depNo);
+        Optional.of(empNo);
+        Optional.of(date);
+       Long id = (Long) Common.getSession(request).getAttribute("overtime");
+       Overtime overtime = new Overtime();
+       overtime.setEmployeeNumber(empNo);
+       overtime.setDepartmentNumber(depNo);
+       overtime.setDay(date);
+       overtime.setId(id);
+       overtime =oneSelfService.updataOvertime(overtime);
+       model.addAttribute("overtime",oneSelfService.OverTimeInfo(overtime.getId()));
+        return "overtime_update";
+    }
+    @ResponseBody
+    @PostMapping("overtime/detele")
+    public String deleteOvertiom(@RequestParam("overtimeID")Long id){
+        return null;
     }
 }

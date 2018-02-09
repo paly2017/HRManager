@@ -4,6 +4,7 @@ import com.example.demo.Uitl.Common;
 import com.example.demo.eneity.*;
 import com.example.demo.service.impl.DepartmentImpl;
 import com.example.demo.service.impl.HistoryServiceImpl;
+import com.example.demo.service.impl.MoveServiceImpl;
 import com.example.demo.service.impl.PositionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class HistoryMagControl {
     private PositionServiceImpl positionService;
     @Autowired
     private DepartmentImpl department;
+    @Autowired
+    private MoveServiceImpl moveService;
 
     /****
      * 员工信息分页展示
@@ -374,5 +377,27 @@ public class HistoryMagControl {
         history = historyService.updateHistory(history);
         model.addAttribute("hisInfo",historyService.historyInfo(history.getEmployeeNumber()));
         return "history_update";
+    }
+
+    /***
+     * 员工档案管理控制器
+     * @param model
+     * @return
+     */
+    @RequestMapping("tohistorymag")
+    public String historyAlllist(Model model){
+        model.addAttribute("hisall",historyService.historyInfoList());
+        return "history_lists";
+    }
+
+    /***
+     * 员工调动记录控制器
+     * @param model
+     * @return
+     */
+    @RequestMapping("move/list")
+    public String moveList(Model model){
+        model.addAttribute("moveinfos",moveService.moveInfos());
+        return "move_list";
     }
 }
