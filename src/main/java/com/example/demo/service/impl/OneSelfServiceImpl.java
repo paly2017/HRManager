@@ -79,10 +79,13 @@ public class OneSelfServiceImpl implements OneSelfService {
      * @param index
      * @return
      */
-    public Page<Overtime> overtimePageService(Long index){
+    public Page<Overtime> overtimePageService(Long index,Employee employee){
+        if (employee==null)return null;
         Sort sort = new Sort(Sort.Direction.DESC,"day");
         Pageable pageable = new PageRequest(Math.toIntExact(index),10,sort);
-        Page<Overtime> overtimePage = iOvertimeOper.findAll(pageable);
+        Overtime overtime = new Overtime();
+        overtime.setEmployeeNumber(employee.getEmployeeNumber());
+        Page<Overtime> overtimePage = iOvertimeOper.findAll(Example.of(overtime),pageable);
         return overtimePage;
     }
 

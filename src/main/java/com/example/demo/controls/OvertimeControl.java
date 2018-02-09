@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.List;
 
@@ -30,9 +31,11 @@ public class OvertimeControl {
      * @return
      */
     @RequestMapping("addworkinfo")
-    public String onselfAddWorkList(Model model, @RequestParam("pageIndex") Long index){
+    public String onselfAddWorkList(Model model, @RequestParam("pageIndex") Long index,
+                                    HttpServletRequest request){
         index = index<1?1:index;
-        Page<Overtime> overtimes = oneSelfService.overtimePageService(index-1);
+        Employee employee = (Employee) Common.getSession(request).getAttribute("userInfo");
+        Page<Overtime> overtimes = oneSelfService.overtimePageService(index-1,employee);
         PageInfo<AddWorkInfo> pageInfo =oneSelfService.addWorkInfoPage(overtimes,index);
         model.addAttribute("datas",pageInfo);
         return "oneself_overtime";
@@ -44,7 +47,6 @@ public class OvertimeControl {
      */
     @RequestMapping("overtimeadd")
     public String sendAddWork(){
-
         return "overtime_add";
     }
 

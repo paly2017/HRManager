@@ -19,7 +19,7 @@ public interface OneSelfService {
 
     void oneSelfAttenService(HttpServletRequest request);
 
-    Page<Overtime> overtimePageService(Long index);
+    Page<Overtime> overtimePageService(Long index,Employee employee);
 
     PageInfo<AddWorkInfo> addWorkInfoPage(Page page, Long index);
 }
