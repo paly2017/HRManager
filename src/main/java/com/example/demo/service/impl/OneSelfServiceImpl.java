@@ -152,5 +152,14 @@ public class OneSelfServiceImpl implements OneSelfService {
         return iOvertimeOper.saveAndFlush(overtime);
     }
 
+    /**
+     * 删除overtiom
+     * @param overtimeId
+     */
+    @Override
+    public void deleteOvertim(Long overtimeId) {
+        iOvertimeOper.delete(overtimeId);
+    }
+
 
 }

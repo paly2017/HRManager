@@ -158,6 +158,7 @@ public class OvertimeControl {
     @ResponseBody
     @PostMapping("overtime/detele")
     public String deleteOvertiom(@RequestParam("overtimeID")Long id){
-        return null;
+        oneSelfService.deleteOvertim(id);
+        return "删除成功";
     }
 }

@@ -28,4 +28,6 @@ public interface OneSelfService {
     AddWorkInfo OverTimeInfo(Long id);
 
     Overtime updataOvertime(Overtime overtime);
+
+    void deleteOvertim(Long overId);
 }

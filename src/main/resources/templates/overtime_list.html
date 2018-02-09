@@ -48,14 +48,14 @@
                                     <td th:text="${over.employee.name}"></td>
                                     <td th:text="${over.overtime.day}"></td>
                                     <td><a th:href="@{'/overtime/updata?overtimeEmpNo='+${over.overtime.id}}" class="btn btn-primary">修改</a>&nbsp;&nbsp;
-                                        <a onclick="" class="btn btn-danger delete">删除</a>
+                                        <a th:onclick="'del('+${over.overtime.id}+')'" class="btn btn-danger delete">删除</a>
                                     </td>
                                 </tr>
                         </tbody>
                     </table>
                     <div>
 							<span style="float: left; padding: 5px">
-								当前&nbsp;<span style="color: red;" th:text="${overs.pageIndex}"></span>&nbsp;/&nbsp;<b th:text="${overs.pageCount}"></b>&nbsp;页&nbsp;&nbsp;
+								当前&nbsp;<span style="color: red;" th:text="${overs.pageIndex}" id="page"></span>&nbsp;/&nbsp;<b th:text="${overs.pageCount}"></b>&nbsp;页&nbsp;&nbsp;
 								总共&nbsp;<b th:text="${overs.dataCount}"></b>&nbsp;条</span>
                         <nav aria-label="Page navigation" style="margin: 0 auto; width: 240px">
                             <ul class="pagination" style="margin: 0;">
@@ -93,12 +93,20 @@
 <script type="text/javascript">
     function del(id){
         parent.layer.confirm('确认删除？', {
-            btn: ['确认','取消'], //按钮
-            shade: false //不显示遮罩
-        }, function(){
-            parent.layer.msg('删除成功！', {icon: 1});
-            location.href="/"+ id +"/delete.do";
-        });
+            btn: ['确认','取消'] //按钮
+            //shade: false //不显示遮罩
+        }, function () {
+            var index=$("#page").html();
+            $.ajax({
+                type:"post",
+                url:"/overtime/detele",
+                data:{overtimeID:id},
+                success:function (msg) {
+                    location.href="/overtime/dolist?pageIndex="+index;
+                    alert(msg)
+                }
+            })
+        })
     }
 </script>
 </body>
