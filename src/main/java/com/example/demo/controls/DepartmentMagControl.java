@@ -161,6 +161,7 @@ public class DepartmentMagControl {
         position = positionService.getPostition(position);
         if (position==null){
             position = new Position();
+            position.setPositionNumber(positionNumber);
         }
         position.setLevel(level);
         position.setName(name);
