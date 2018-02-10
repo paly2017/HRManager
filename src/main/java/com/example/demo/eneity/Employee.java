@@ -162,4 +162,24 @@ public class Employee {
     this.notes = notes;
   }
 
+  @Override
+  public String toString() {
+    return "Employee{" +
+            "id=" + id +
+            ", employeeNumber=" + employeeNumber +
+            ", name='" + name + '\'' +
+            ", gender='" + gender + '\'' +
+            ", birthday=" + birthday +
+            ", telephone='" + telephone + '\'' +
+            ", email='" + email + '\'' +
+            ", address='" + address + '\'' +
+            ", photo='" + photo + '\'' +
+            ", education='" + education + '\'' +
+            ", departmentNumber=" + departmentNumber +
+            ", positionNumber=" + positionNumber +
+            ", inTime=" + inTime +
+            ", password='" + password + '\'' +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
 }

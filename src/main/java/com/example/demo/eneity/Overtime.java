@@ -82,4 +82,16 @@ public class Overtime {
     this.notes = notes;
   }
 
+  @Override
+  public String toString() {
+    return "Overtime{" +
+            "id=" + id +
+            ", departmentNumber=" + departmentNumber +
+            ", employeeNumber=" + employeeNumber +
+            ", day=" + day +
+            ", startTime=" + startTime +
+            ", endTime=" + endTime +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
 }

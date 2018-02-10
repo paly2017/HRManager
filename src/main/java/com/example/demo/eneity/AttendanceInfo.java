@@ -27,4 +27,12 @@ public class AttendanceInfo {
     public void setHistory(History history) {
         this.history = history;
     }
+
+    @Override
+    public String toString() {
+        return "AttendanceInfo{" +
+                "attendance=" + attendance +
+                ", history=" + history +
+                '}';
+    }
 }

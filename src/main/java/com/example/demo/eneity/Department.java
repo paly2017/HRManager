@@ -80,4 +80,16 @@ public class Department {
     this.notes = notes;
   }
 
+  @Override
+  public String toString() {
+    return "Department{" +
+            "id=" + id +
+            ", departmentNumber=" + departmentNumber +
+            ", name='" + name + '\'' +
+            ", manager='" + manager + '\'' +
+            ", telephone='" + telephone + '\'' +
+            ", address='" + address + '\'' +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
 }

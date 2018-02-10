@@ -122,4 +122,20 @@ public class Lea {
     this.notes = notes;
   }
 
+  @Override
+  public String toString() {
+    return "Lea{" +
+            "id=" + id +
+            ", employeeNumber=" + employeeNumber +
+            ", departmentNumber=" + departmentNumber +
+            ", startTime=" + startTime +
+            ", endTime=" + endTime +
+            ", days='" + days + '\'' +
+            ", reason='" + reason + '\'' +
+            ", type='" + type + '\'' +
+            ", manager='" + manager + '\'' +
+            ", status='" + status + '\'' +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
 }

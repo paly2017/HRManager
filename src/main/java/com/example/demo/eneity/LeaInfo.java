@@ -27,4 +27,12 @@ public class LeaInfo {
     public void setHistory(History history) {
         this.history = history;
     }
+
+    @Override
+    public String toString() {
+        return "LeaInfo{" +
+                "lea=" + lea +
+                ", history=" + history +
+                '}';
+    }
 }

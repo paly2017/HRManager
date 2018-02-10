@@ -93,4 +93,11 @@ public class Department {
  </script>
 
 
-
+14. 配置tomcart 请求日志
+在application.properties 中
+# request log start
+system.root.path=D:
+server.tomcat.basedir=${system.root.path}/log/tomcat_log
+server.tomcat.accesslog.enabled=true
+server.tomcat.accesslog.pattern=%t %a %r %s %S (%D ms)
+# request log end

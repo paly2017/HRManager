@@ -44,4 +44,13 @@ public class AddWorkInfo {
     public void setOvertime(Overtime overtime) {
         this.overtime = overtime;
     }
+
+    @Override
+    public String toString() {
+        return "AddWorkInfo{" +
+                "employee=" + employee +
+                ", department=" + department +
+                ", overtime=" + overtime +
+                '}';
+    }
 }

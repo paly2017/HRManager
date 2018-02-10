@@ -115,4 +115,19 @@ public class Attendance {
     this.notes = notes;
   }
 
+  @Override
+  public String toString() {
+    return "Attendance{" +
+            "id=" + id +
+            ", employeeNumber=" + employeeNumber +
+            ", day=" + day +
+            ", timeType='" + timeType + '\'' +
+            ", startTime=" + startTime +
+            ", startType='" + startType + '\'' +
+            ", endTime=" + endTime +
+            ", endType='" + endType + '\'' +
+            ", workType='" + workType + '\'' +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
 }

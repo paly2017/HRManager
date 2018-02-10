@@ -61,4 +61,14 @@ public class Position {
     this.notes = notes;
   }
 
+  @Override
+  public String toString() {
+    return "Position{" +
+            "id=" + id +
+            ", positionNumber=" + positionNumber +
+            ", name='" + name + '\'' +
+            ", level='" + level + '\'' +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
 }

@@ -46,4 +46,14 @@ public class HistoryInfo {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
+    @Override
+    public String toString() {
+        return "HistoryInfo{" +
+                "history=" + history +
+                ", position=" + position +
+                ", department=" + department +
+                ", employee=" + employee +
+                '}';
+    }
 }

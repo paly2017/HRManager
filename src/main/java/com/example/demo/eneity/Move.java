@@ -82,4 +82,16 @@ public class Move {
     this.notes = notes;
   }
 
+  @Override
+  public String toString() {
+    return "Move{" +
+            "id=" + id +
+            ", employeeNumber=" + employeeNumber +
+            ", before=" + before +
+            ", after=" + after +
+            ", time=" + time +
+            ", manager='" + manager + '\'' +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
 }

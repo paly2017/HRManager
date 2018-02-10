@@ -182,4 +182,26 @@ public class History {
     this.notes = notes;
   }
 
+  @Override
+  public String toString() {
+    return "History{" +
+            "id=" + id +
+            ", employeeNumber=" + employeeNumber +
+            ", name='" + name + '\'' +
+            ", gender='" + gender + '\'' +
+            ", birthday=" + birthday +
+            ", telephone='" + telephone + '\'' +
+            ", email='" + email + '\'' +
+            ", address='" + address + '\'' +
+            ", photo='" + photo + '\'' +
+            ", education='" + education + '\'' +
+            ", inTime=" + inTime +
+            ", outTime=" + outTime +
+            ", departmentNumber=" + departmentNumber +
+            ", positionNumber=" + positionNumber +
+            ", status='" + status + '\'' +
+            ", home='" + home + '\'' +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
 }

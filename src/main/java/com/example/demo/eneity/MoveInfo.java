@@ -36,4 +36,13 @@ public class MoveInfo {
     public void setAfterDepartment(Department afterDepartment) {
         this.afterDepartment = afterDepartment;
     }
+
+    @Override
+    public String toString() {
+        return "MoveInfo{" +
+                "move=" + move +
+                ", beforeDepartment=" + beforeDepartment +
+                ", afterDepartment=" + afterDepartment +
+                '}';
+    }
 }

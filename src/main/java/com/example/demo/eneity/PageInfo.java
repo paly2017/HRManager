@@ -61,4 +61,17 @@ public class PageInfo<T> {
     public void settPage(Page<T> tPage) {
         this.tPage = tPage;
     }
+
+    @Override
+    public String toString() {
+        return "PageInfo{" +
+                "pageSize=" + pageSize +
+                ", pageIndex=" + pageIndex +
+                ", pageStart=" + pageStart +
+                ", pageCount=" + pageCount +
+                ", dataCount=" + dataCount +
+                ", list=" + list +
+                ", tPage=" + tPage +
+                '}';
+    }
 }
