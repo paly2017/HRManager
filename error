@@ -62,5 +62,35 @@ public class Department {
  11,jpa 跟新数据库
  使用saveAndFlush（）传入被修改的对象，传入参数的主键id需要与数据库中主键一直，否则增加新的数据；
 
+ 12,jq 获取thymeleaf模板的值
+ /*<![CDATA[*/
+ var postition = [[${pos.level}]];
+   /*]]>*/
+ 13，通过ajax 查询显示option 标签的值，并且动态改变select
+ 解决方法1：
+ <script th:inline="javascript">
+     $(document).ready(function () {
+         setTimeout(function () {
+             /*<![CDATA[*/
+             var postition = [[${pos.level}]];//获取thymeleaf的值
+             var postitions = new Array();
+             var obj = new Array();
+             //将页面option标签的值和对象存入数组中
+             $("option").each(function (key,value) {
+                 postitions[key]=$(value).val()
+                 obj[key]=value;
+             });
+             //动态激活符合条件的option
+             for (var i in postitions){
+                 if (postitions[i]===postition){
+                     $(obj[i]).attr("selected",true);
+                 }
+             }
+         },100);
+         /*]]>*/
+
+     })
+ </script>
+
 
 

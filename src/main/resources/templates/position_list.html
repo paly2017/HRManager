@@ -28,7 +28,7 @@
                 </div>
                 <div class="ibox-content">
                     <div>
-                        <a href="" class="btn btn-success">添加职称</a>
+                        <a href="/position/toadd" class="btn btn-success">添加职称</a>
                     </div>
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
@@ -48,7 +48,7 @@
                                     <td th:text="${page.name}"></td>
                                     <td th:text="${page.level}"></td>
                                     <td th:text="${page.notes}"></td>
-                                    <td><a href="" class="btn btn-primary">修改</a>&nbsp;&nbsp;
+                                    <td><a th:href="@{'/position/toupdata?posId='+${page.id}}" class="btn btn-primary">修改</a>&nbsp;&nbsp;
                                         <a th:onclick="'del('+${page.id}+')'" class="btn btn-danger">删除</a></td>
                                 </tr>
                         </tbody>

@@ -1,9 +1,11 @@
 package com.example.demo.controls;
 
+import com.example.demo.Uitl.Common;
 import com.example.demo.eneity.Department;
 import com.example.demo.eneity.Position;
 import com.example.demo.service.impl.DepartmentImpl;
 import com.example.demo.service.impl.PositionServiceImpl;
+import com.google.common.base.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -128,5 +130,53 @@ public class DepartmentMagControl {
         Position position = new Position();
         position.setId(id);
         return positionService.positionDelete(position);
+    }
+    @RequestMapping("position/toupdata")
+    public String topositionUpdata(@RequestParam("posId")Long id,Model model){
+        Position position = new Position();
+        position.setId(id);
+        position =  positionService.getPostition(position);
+        model.addAttribute("pos",position);
+        return "position_update";
+    }
+
+    /**
+     * 员工级别
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("dolevel")
+    public String level(){
+        return Common.getJsonString(positionService.getLevel());
+    }
+    @PostMapping("position/doupdata")
+    public String dopositionUpdata(@RequestParam("positionNumber")Long positionNumber,
+                                   @RequestParam("name")String name,
+                                   @RequestParam("level")String level,
+                                   @RequestParam("notes")String notes,
+                                   Model model){
+        Optional.of(positionNumber);
+        Position position = new Position();
+        position.setPositionNumber(positionNumber);
+        position = positionService.getPostition(position);
+        position.setLevel(level);
+        position.setName(name);
+        position.setNotes(notes);
+        if (null==position.getId()){
+            //增加
+            position = positionService.svaeAndUpdata(position);
+            model.addAttribute("posId",position.getPositionNumber()+1);
+            return "position_add";
+        }else {
+            //更新
+            position = positionService.svaeAndUpdata(position);
+            model.addAttribute("pos",position);
+            return "position_update";
+        }
+    }
+    @RequestMapping("position/toadd")
+    public String toAddpPosition(Model model){
+        model.addAttribute("posId",positionService.getMaxPostitionNumber()+1);
+        return "position_add";
     }
 }

@@ -59,4 +59,41 @@ public class PositionServiceImpl implements PositionServiceI {
        }
        return "不可以删除!";
     }
+
+    /***
+     * 任意条件查询Position
+     * @param position
+     * @return
+     */
+    public Position getPostition(Position position){
+        return iPositionOper.findOne(Example.of(position));
+    }
+
+    /***
+     * 查找用户权限，无重复
+     * @return
+     */
+    @Override
+    public List<String> getLevel() {
+       return iPositionOper.getLevelInfo();
+    }
+
+    /***
+     * 保存或者更新position
+     * @param position
+     * @return
+     */
+    @Override
+    public Position svaeAndUpdata(Position position) {
+        return iPositionOper.saveAndFlush(position);
+    }
+
+    /**
+     * 获得最大职称编号
+     * @return
+     */
+    @Override
+    public Long getMaxPostitionNumber() {
+        return Long.valueOf(iPositionOper.getMaxPositionNumber());
+    }
 }

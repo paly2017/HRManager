@@ -13,4 +13,12 @@ public interface PositionServiceI {
     Page<Position> positionPageList(Long index);
 
     String positionDelete(Position position);
+
+    Position getPostition(Position position);
+
+    List<String> getLevel();
+
+    Position svaeAndUpdata(Position position);
+
+    Long getMaxPostitionNumber();
 }
