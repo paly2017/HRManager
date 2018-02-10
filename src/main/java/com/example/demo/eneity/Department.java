@@ -27,7 +27,7 @@ public class Department {
   }
 
 
-  public long getDepartmentNumber() {
+  public Long getDepartmentNumber() {
     return departmentNumber;
   }
 

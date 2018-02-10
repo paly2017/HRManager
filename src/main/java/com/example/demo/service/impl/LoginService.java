@@ -27,7 +27,6 @@ public class LoginService implements LoginServiceI{
     public boolean doLogin(Long userName, String password) {
         Employee employee = iEmployeeOper.
                             findByEmployeeNumberAndPassword(userName, password);
-        System.out.println(employee);
         if (null!=employee){
            this.employee=employee;
             return true;
