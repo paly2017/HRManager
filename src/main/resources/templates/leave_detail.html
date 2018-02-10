@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HR医院 - 查看员工请假信息</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+
+    <link rel="shortcut icon" th:href="@{favicon.ico}"/>
+    <link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.css}"  rel="stylesheet"/>
+
+    <!-- Data Tables -->
+    <link th:href="@{/css/plugins/dataTables/dataTables.bootstrap.css}"
+          rel="stylesheet"/>
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}"  rel="stylesheet"/>
+
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>查看员工请假信息</h5>
+                </div>
+                <div class="ibox-content">
+                    <form method="post" class="form-horizontal" action="">
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <label class="col-sm-8 control-label">工号：</label>
+                                <p class="form-control-static" th:text="${leainfo.lea.employeeNumber}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <label class="col-sm-8 control-label">姓名：</label>
+                                <p class="form-control-static" th:text="${leainfo.history.name}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <label class="col-sm-8 control-label">起始时间：</label>
+                                <p class="form-control-static" th:text="${leainfo.lea.startTime}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <label class="col-sm-8 control-label">结束时间：</label>
+                                <p class="form-control-static" th:text="${leainfo.lea.endTime}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <label class="col-sm-8 control-label" >天数：</label>
+                                <p class="form-control-static" th:text="${leainfo.lea.days}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <label class="col-sm-8 control-label">类型：</label>
+                                <p class="form-control-static" th:text="${leainfo.lea.type}"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <label class="col-sm-8 control-label">请假原因：</label>
+                                <p class="form-control-static" th:text="${leainfo.lea.reason}"></p>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-8">
+                                <a th:onclick="'lea('+${leainfo.lea.id}+')'" class="btn btn-primary">批&nbsp;&nbsp;准</a>&nbsp;&nbsp;
+                                <a href="/leave/listPage.do?pageNo=1" class="btn btn-info">返&nbsp;&nbsp;回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/jeditable/jquery.jeditable.js}"></script>
+
+<!-- Data Tables -->
+<script th:src="@{/js/plugins/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/js/plugins/dataTables/dataTables.bootstrap.js}"></script>
+
+<!-- 自定义js -->
+<script th:src="@{/js/content.js}"></script>
+<script>
+
+    function lea(id) {
+        $.ajax({
+            type:"post",
+            url:"/lea/donoleave",
+            data:{leaid:id},
+            success:function (msg) {
+                location.href="/leave/nolist";
+                alert(msg)
+            }
+        })
+    }
+</script>
+</body>
+</html>

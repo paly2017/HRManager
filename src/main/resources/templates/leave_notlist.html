@@ -3,10 +3,9 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>HR医院 - 员工请假列表</title>
+    <title>HR医院 - 员工未批准请假列表</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
-
 
     <link rel="shortcut icon" th:href="@{favicon.ico}"/>
     <link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet"/>
@@ -19,7 +18,6 @@
     <link th:href="@{/css/style.css}"  rel="stylesheet"/>
 
     <link rel="stylesheet" type="text/css" th:href="@{/dist/sweetalert.css}"/>
-
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -27,7 +25,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>请假列表</h5>
+                    <h5>未批准请假列表</h5>
                 </div>
                 <div class="ibox-content">
                     <table class="table table-striped table-bordered table-hover dataTables-example">
@@ -38,21 +36,20 @@
                             <th>开始日期</th>
                             <th>结束日期</th>
                             <th>天数</th>
-                            <th>类型</th>
-                            <th>请假原因</th>
                             <th>审批状态</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr class="gradeA" th:each="yes,count:${alllist}">
+                            <tr class="gradeA" th:each="lea,count:${noleas}">
                                 <td th:text="${count.count}"></td>
-                                <td th:text="${yes.history.name}"></td>
-                                <td th:text="${yes.lea.startTime}"></td>
-                                <td th:text="${yes.lea.endTime}"></td>
-                                <td th:text="${yes.lea.days}"></td>
-                                <td th:text="${yes.lea.type}"></td>
-                                <td th:text="${yes.lea.reason}"></td>
-                                <td th:text="${yes.lea.status}"></td>
+                                <td th:text="${lea.history.name}"></td>
+                                <td th:text="${lea.lea.startTime}"></td>
+                                <td th:text="${lea.lea.endTime}"></td>
+                                <td th:text="${lea.lea.days}"></td>
+                                <td th:text="${lea.lea.status}"></td>
+                                <td><a th:href="@{'/leave/leadetail?leaid='+${lea.lea.id}}" class="btn btn-info">查看</a>&nbsp;&nbsp;
+                                    <a th:onclick="'lea('+${lea.lea.id}+')'" class="btn btn-primary">批准</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -61,6 +58,7 @@
         </div>
     </div>
 </div>
+
 <!-- 全局js -->
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
@@ -96,6 +94,31 @@
             "height": "100%"
         });
     });
+</script>
+<!--<script>-->
+    <!--$().ready(function() {-->
+        <!--$("#commentForm").validate();-->
+    <!--});-->
+    <!--$.validator.setDefaults({-->
+        <!--submitHandler: function() {-->
+            <!--parent.layer.alert('已批准！',{icon: 1}),-->
+                <!--form.submit();-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
+<script>
+
+    function lea(id) {
+        $.ajax({
+            type:"post",
+            url:"/lea/donoleave",
+            data:{leaid:id},
+            success:function (msg) {
+                location.href="/leave/nolist";
+                alert(msg)
+            }
+        })
+    }
 </script>
 </body>
 </html>
