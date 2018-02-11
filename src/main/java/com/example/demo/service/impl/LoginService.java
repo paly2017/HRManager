@@ -24,14 +24,9 @@ public class LoginService implements LoginServiceI{
      * @return
      */
     @Override
-    public boolean doLogin(Long userName, String password) {
-        Employee employee = iEmployeeOper.
-                            findByEmployeeNumberAndPassword(userName, password);
-        if (null!=employee){
-           this.employee=employee;
-            return true;
-        }
-        return false;
+    public Employee doLogin(Long userName, String password) {
+        employee = iEmployeeOper.findByEmployeeNumberAndPassword(userName, password);
+        return employee;
     }
 
     /***

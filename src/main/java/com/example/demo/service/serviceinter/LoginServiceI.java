@@ -11,7 +11,7 @@ public interface LoginServiceI {
      * @param password
      * @return
      */
-    boolean doLogin(Long userName,String password);
+    Employee doLogin(Long userName,String password);
 
     /***
      * 用户信息存入session中

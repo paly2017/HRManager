@@ -1,3 +1,5 @@
+
+<!--部门主任-->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
@@ -68,46 +70,32 @@
                         </li>
                         <li><a class="J_menuItem" href="/sendupdataoneself" >修改个人信息</a>
                         </li>
-                        <li><a class="J_menuItem" href="/oneselfattendance">查看考勤记录</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/addworkinfo?pageIndex=1">查看加班信息</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/addleave">申请请假</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/leavelist?pageindex=1">查看请假记录</a>
-                        </li>
                     </ul></li>
-
                 <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                    <span class="ng-scope">员工</span>
+                    <span class="ng-scope">考勤</span>
                 </li>
-                <li><a href="graph_metrics.html">
-                    <i class="fa fa fa-user-md"></i>
-                    <span class="nav-label">员工管理</span>
-                    <span class="fa arrow"></span>
-                </a>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calendar"></i>
+                        <span class="nav-label">考勤信息</span>
+                        <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="/emplist?pageindex=1">在职员工管理</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/pagehistorylist?pageIndex=1">离休员工管理</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/tohistorymag">员工档案管理</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/move/list">员工调动记录</a>
+                        <li><a class="J_menuItem"  href="/oneselfattendance">考勤记录</a>
                         </li>
                     </ul>
                 </li>
-                <li><a href="mailbox.html">
-                    <i class="fa fa-calendar"></i>
-                    <span class="nav-label">考勤管理</span>
-                    <span class="fa arrow"></span>
-                </a>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-edit"></i>
+                        <span class="nav-label">加班信息</span><span class="fa arrow">
+                        	</span>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="/attendance/list">考勤管理</a>
+                        <li><a class="J_menuItem" href="/addworkinfo?pageIndex=1">查看加班信息</a>
                         </li>
-                        <li><a class="J_menuItem" href="/overtime/dolist?pageIndex=1">加班管理</a>
-                        </li>
-                    </ul></li>
+                    </ul>
+                </li>
                 <li><a href="mailbox.html">
                     <i class="fa fa-bookmark"></i>
                     <span class="nav-label">&nbsp;请假管理 </span>
@@ -118,23 +106,7 @@
                         </li>
                         <li><a class="J_menuItem" href="/leave/yeslist">已批准列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="/leave/list">请假记录</a>
-                        </li>
                     </ul></li>
-                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                    <span class="ng-scope">部门</span>
-                </li>
-                <li><a href="#">
-                    <i class="fa fa-sitemap"></i>
-                    <span class="nav-label">部门管理</span><span class="fa arrow"></span>
-                </a>
-                    <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="/department/list?pageindex=1">部门管理</a>
-                        </li>
-                        <li><a class="J_menuItem" href="/position/pagelinst?pageindex=1">职称管理</a>
-                        </li>
-                    </ul>
-                </li>
             </ul>
         </div>
     </nav>
