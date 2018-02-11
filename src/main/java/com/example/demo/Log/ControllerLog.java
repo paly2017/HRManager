@@ -18,8 +18,10 @@ public class ControllerLog {
     private static final Logger logger = LoggerFactory.getLogger(ControllerLog.class);
 
     //设置切面
-    @Pointcut("execution(public * com.example.demo..*(..))")
+    @Pointcut("execution(public * com.example.demo.controls..*(..))")
     public void cut(){}
+    @Pointcut("execution(public * com.example.demo.service..*(..))")
+    public void servicecut(){}
     @Before("cut()")//在调用上面 @Pointcut标注的方法前执行以下方法
     public void doBefore(JoinPoint joinPoint){
         ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
@@ -44,4 +46,23 @@ public class ControllerLog {
     public void doAfterReturning(Object obj){
         if (obj!=null) logger.info("response={}",obj.toString());
     }
+    @Before("servicecut()")
+    public void serviceBerfore(JoinPoint joinPoint){
+        logger.info("------------进入service层--------------");
+        //类及访问的方法
+        logger.info("class_method={}",joinPoint.getSignature().getDeclaringTypeName()+'.'+joinPoint.getSignature().getName());
+        //参数
+        logger.info("args={}",joinPoint.getArgs());
+        //
+    }
+    @After("servicecut()")
+    public void serviceAfter(){
+        logger.info("------------service--End--------------");
+    }
+    @AfterReturning(returning = "object",pointcut = "servicecut()")
+    public void doServiceAfterReturning(Object object){
+        logger.info("--------------service层返回值-------------------");
+        if (object!=null)logger.info("response={}",object.toString());
+    }
+
 }
